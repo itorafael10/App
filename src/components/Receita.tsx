@@ -20,6 +20,9 @@ const VISUAL: Record<Categoria, { emoji: string; fundo: string }> = {
   outro: { emoji: "🍽️", fundo: "from-emerald-100 to-teal-200" },
 };
 
+/** Receitas do modo demonstração têm id começando com "demo-" (ver lib/receitas-demo.ts). */
+export const receitaDeExemplo = (r: Receita) => r.id.startsWith("demo-");
+
 const COR_DIFICULDADE = {
   Fácil: "bg-folha text-white",
   Média: "bg-laranja text-white",
@@ -198,6 +201,12 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
               <strong>Dica:</strong> {receita.dica}
             </p>
           )}
+
+          <p className="border-t border-linha pt-4 text-center text-[12px] leading-relaxed text-texto-suave">
+            {receitaDeExemplo(receita)
+              ? "Receita de exemplo do modo demonstração, apenas para testar o app."
+              : "✨ Receita sugerida por inteligência artificial. Confira tempos, temperaturas e quantidades antes de preparar."}
+          </p>
         </div>
       </div>
     </div>

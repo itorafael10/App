@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useApp } from "@/components/AppProvider";
 import { IconeFiltro } from "@/components/Icones";
-import { CartaoReceita, DetalheReceita } from "@/components/Receita";
-import { Cabecalho, Chip } from "@/components/ui";
+import { CartaoReceita, DetalheReceita, receitaDeExemplo } from "@/components/Receita";
+import { Aviso, Cabecalho, Chip } from "@/components/ui";
 import type { Receita } from "@/lib/tipos";
 
 const FILTROS = {
@@ -82,6 +82,13 @@ export default function Receitas() {
                 </Chip>
               ))}
             </div>
+          )}
+
+          {resultados.some(receitaDeExemplo) && (
+            <Aviso>
+              <strong>Modo demonstração:</strong> estas são receitas de exemplo montadas com seus ingredientes. Quando a
+              inteligência artificial for ativada, aparecerão receitas reais criadas para você.
+            </Aviso>
           )}
 
           {lista.length ? (
