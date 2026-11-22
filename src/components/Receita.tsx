@@ -20,6 +20,13 @@ const VISUAL: Record<Categoria, { emoji: string; fundo: string }> = {
   outro: { emoji: "🍽️", fundo: "from-emerald-100 to-teal-200" },
 };
 
+export function formatarTempo(minutos: number) {
+  if (minutos < 60) return `${minutos} min`;
+  const h = Math.floor(minutos / 60);
+  const m = minutos % 60;
+  return m ? `${h}h${String(m).padStart(2, "0")}` : `${h}h`;
+}
+
 /** Receitas do modo demonstração têm id começando com "demo-" (ver lib/receitas-demo.ts). */
 export const receitaDeExemplo = (r: Receita) => r.id.startsWith("demo-");
 
@@ -58,17 +65,23 @@ export function CartaoReceita({ receita, onAbrir }: { receita: Receita; onAbrir:
     >
       <div className={`relative grid h-36 place-items-center bg-gradient-to-br ${v.fundo}`}>
         <span className="text-6xl drop-shadow-sm" aria-hidden="true">
-          {v.emoji}
+          {receita.emoji ?? v.emoji}
         </span>
         <span
           className={`absolute left-3 top-3 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${COR_DIFICULDADE[receita.dificuldade]}`}
         >
           {receita.dificuldade}
         </span>
-        {receita.custo === "Baixo" && (
-          <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-primaria-escura">
-            💰 Econômica
+        {receita.classica ? (
+          <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-[#9e2a2b]">
+            🎄 Receita clássica
           </span>
+        ) : (
+          receita.custo === "Baixo" && (
+            <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-primaria-escura">
+              💰 Econômica
+            </span>
+          )
         )}
         <BotaoFavorito receita={receita} className="absolute right-3 top-3" />
       </div>
@@ -77,7 +90,7 @@ export function CartaoReceita({ receita, onAbrir }: { receita: Receita; onAbrir:
         <p className="mt-1 line-clamp-2 text-[13px] text-texto-suave">{receita.descricao}</p>
         <div className="mt-3 flex items-center justify-between text-[12px] text-texto-suave">
           <span className="flex items-center gap-1">
-            <IconeRelogio className="size-4" /> {receita.tempoMinutos} min
+            <IconeRelogio className="size-4" /> {formatarTempo(receita.tempoMinutos)}
           </span>
           <span className="flex items-center gap-1">
             <IconePessoas className="size-4" /> {receita.porcoes} {receita.porcoes === 1 ? "porção" : "porções"}
@@ -108,7 +121,8 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
   }, [onFechar]);
 
   const v = VISUAL[receita.categoria] ?? VISUAL.outro;
-  const faltam = receita.ingredientes.filter((i) => !i.tenho);
+  // Nas receitas clássicas não sabemos o que a pessoa tem em casa
+  const faltam = receita.classica ? [] : receita.ingredientes.filter((i) => !i.tenho);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center" onClick={onFechar}>
@@ -121,7 +135,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
       >
         <div className={`relative grid h-44 place-items-center bg-gradient-to-br ${v.fundo}`}>
           <span className="text-7xl" aria-hidden="true">
-            {v.emoji}
+            {receita.emoji ?? v.emoji}
           </span>
           <button
             onClick={onFechar}
@@ -138,7 +152,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
             <h2 className="text-xl font-bold leading-tight">{receita.titulo}</h2>
             <p className="mt-1.5 text-sm text-texto-suave">{receita.descricao}</p>
             <div className="mt-4 grid grid-cols-3 gap-2 text-center text-[12px]">
-              <Info rotulo="Tempo" valor={`${receita.tempoMinutos} min`} />
+              <Info rotulo="Tempo" valor={formatarTempo(receita.tempoMinutos)} />
               <Info rotulo="Porções" valor={String(receita.porcoes)} />
               <Info rotulo="Custo" valor={receita.custo} />
             </div>
@@ -149,13 +163,17 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
             <ul className="space-y-2">
               {receita.ingredientes.map((i, n) => (
                 <li key={n} className="flex items-start gap-3 text-sm">
-                  <span
-                    className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full ${
-                      i.tenho ? "bg-folha-clara text-folha" : "bg-laranja-claro text-laranja-escuro"
-                    }`}
-                  >
-                    {i.tenho ? <IconeCheck className="size-3.5" /> : <IconeCarrinho className="size-3" />}
-                  </span>
+                  {receita.classica ? (
+                    <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-primaria" aria-hidden="true" />
+                  ) : (
+                    <span
+                      className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full ${
+                        i.tenho ? "bg-folha-clara text-folha" : "bg-laranja-claro text-laranja-escuro"
+                      }`}
+                    >
+                      {i.tenho ? <IconeCheck className="size-3.5" /> : <IconeCarrinho className="size-3" />}
+                    </span>
+                  )}
                   <span className="flex-1">
                     <span className="font-medium">{i.nome}</span>
                     <span className="text-texto-suave"> · {i.quantidade}</span>
@@ -203,7 +221,9 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
           )}
 
           <p className="border-t border-linha pt-4 text-center text-[12px] leading-relaxed text-texto-suave">
-            {receitaDeExemplo(receita)
+            {receita.classica
+              ? "🎄 Receita clássica das festas. Fornos variam: confira o ponto antes de servir."
+              : receitaDeExemplo(receita)
               ? "Receita de exemplo do modo demonstração, apenas para testar o app."
               : "✨ Receita sugerida por inteligência artificial. Confira tempos, temperaturas e quantidades antes de preparar."}
           </p>

@@ -44,7 +44,7 @@ export function Chip({
   onRemover?: () => void;
 }) {
   const base =
-    "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors";
+    "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors";
   if (onRemover) {
     return (
       <span className={`${base} bg-primaria text-white`}>

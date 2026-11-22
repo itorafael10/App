@@ -48,6 +48,26 @@ export default function Inicio() {
         </span>
       </Link>
 
+      <Link
+        href="/festas"
+        className="relative flex items-center gap-4 overflow-hidden rounded-3xl bg-gradient-to-br from-[#9e2a2b] via-[#7a2a1f] to-marrom p-5 text-white shadow-sm"
+      >
+        <span className="pointer-events-none absolute right-3 top-2 text-2xl opacity-80" aria-hidden="true">
+          ✨
+        </span>
+        <span className="text-5xl" aria-hidden="true">
+          🎄
+        </span>
+        <span className="flex-1">
+          <span className="block text-[12px] font-medium uppercase tracking-wider text-primaria-clara2">Especial de fim de ano</span>
+          <span className="block font-marca text-xl font-bold leading-tight">Receitas de Natal e Ano Novo</span>
+          <span className="mt-1 block text-[13px] text-white/85">Peru, pernil, farofa, rabanada e mais clássicos</span>
+        </span>
+        <span className="text-2xl text-primaria" aria-hidden="true">
+          ›
+        </span>
+      </Link>
+
       {destaque && (
         <section>
           <h2 className="mb-3 font-semibold">{resultados[0] ? "Da sua última busca" : "Um dos seus favoritos"}</h2>

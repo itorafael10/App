@@ -41,7 +41,13 @@ export const RespostaReceitasSchema = z.object({
 });
 
 export type ReceitaGerada = z.infer<typeof ReceitaGeradaSchema>;
-export type Receita = ReceitaGerada & { id: string };
+export type Receita = ReceitaGerada & {
+  id: string;
+  /** Receita da coleção fixa (ex.: Natal e Ano Novo), não gerada por IA */
+  classica?: boolean;
+  /** Emoji específico do prato, no lugar do emoji da categoria */
+  emoji?: string;
+};
 export type Categoria = (typeof CATEGORIAS)[number];
 
 export const PedidoReceitasSchema = z.object({
