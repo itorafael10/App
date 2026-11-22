@@ -4,7 +4,7 @@ App que transforma os ingredientes que você tem em casa em receitas personaliza
 
 Funciona no navegador do celular e do computador, e pode ser instalado na tela inicial como um app.
 
-**Acesse:** https://cozinha-inteligente-iota.vercel.app
+**Acesse:** https://chef-de-casa.vercel.app
 
 ## O que já funciona (fase 1)
 
