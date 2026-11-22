@@ -16,7 +16,7 @@ export function AreaLogada({ children }: { children: React.ReactNode }) {
   if (carregando || !usuario) {
     return (
       <div className="grid min-h-dvh place-items-center">
-        <span className="size-8 animate-spin rounded-full border-[3px] border-verde/25 border-t-verde" aria-label="Carregando" />
+        <span className="size-8 animate-spin rounded-full border-[3px] border-primaria/25 border-t-primaria" aria-label="Carregando" />
       </div>
     );
   }

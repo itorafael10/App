@@ -96,7 +96,7 @@ export default function Buscar() {
           }}
           className="flex gap-2"
         >
-          <label className="flex h-12 min-w-0 flex-1 items-center gap-2 rounded-xl border border-linha bg-cartao px-3.5 focus-within:border-verde focus-within:ring-2 focus-within:ring-verde/20">
+          <label className="flex h-12 min-w-0 flex-1 items-center gap-2 rounded-xl border border-linha bg-cartao px-3.5 focus-within:border-primaria focus-within:ring-2 focus-within:ring-primaria/20">
             <IconeBusca className="size-[18px] text-texto-suave" />
             <input
               value={texto}
@@ -107,7 +107,7 @@ export default function Buscar() {
               aria-label="Ingrediente"
             />
             {texto && (
-              <button type="submit" className="grid size-8 place-items-center rounded-lg bg-verde text-white" aria-label="Adicionar">
+              <button type="submit" className="grid size-8 place-items-center rounded-lg bg-primaria text-white" aria-label="Adicionar">
                 <IconeMais className="size-4" />
               </button>
             )}
@@ -118,7 +118,7 @@ export default function Buscar() {
               onClick={falar}
               aria-label={ouvindo ? "Parar de ouvir" : "Falar ingredientes"}
               className={`grid size-12 shrink-0 place-items-center rounded-xl border transition ${
-                ouvindo ? "animate-pulse border-verde bg-verde text-white" : "border-linha bg-cartao text-verde"
+                ouvindo ? "animate-pulse border-primaria bg-primaria text-white" : "border-linha bg-cartao text-primaria"
               }`}
             >
               <IconeMic />
@@ -165,13 +165,13 @@ export default function Buscar() {
               onChange={(e) => perfil && salvarPerfil({ ...perfil, economico: e.target.checked })}
               className="peer sr-only"
             />
-            <span className="relative h-7 w-12 shrink-0 rounded-full bg-linha transition peer-checked:bg-verde after:absolute after:left-1 after:top-1 after:size-5 after:rounded-full after:bg-white after:shadow after:transition peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-verde/40" />
+            <span className="relative h-7 w-12 shrink-0 rounded-full bg-linha transition peer-checked:bg-primaria after:absolute after:left-1 after:top-1 after:size-5 after:rounded-full after:bg-white after:shadow after:transition peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-primaria/40" />
           </label>
           <div className="border-t border-linha pt-3 text-[13px]">
             <span className="text-texto-suave">Restrições: </span>
             {restricoes.length ? <strong className="font-medium">{restricoes.join(", ")}</strong> : "nenhuma"}
             {" · "}
-            <Link href="/perfil" className="font-semibold text-verde">
+            <Link href="/perfil" className="font-semibold text-primaria">
               Alterar
             </Link>
           </div>

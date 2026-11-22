@@ -34,7 +34,7 @@ export default function Perfil() {
       <Cabecalho titulo="Perfil" />
       <div className="space-y-6 p-5">
         <div className="flex items-center gap-4">
-          <span className="grid size-14 place-items-center rounded-full bg-verde text-xl font-semibold text-white">{inicial}</span>
+          <span className="grid size-14 place-items-center rounded-full bg-primaria text-xl font-semibold text-white">{inicial}</span>
           <div className="min-w-0">
             <p className="truncate font-semibold">{nome || "Sem nome"}</p>
             <p className="truncate text-sm text-texto-suave">{usuario?.email}</p>
@@ -46,7 +46,7 @@ export default function Perfil() {
           <input
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            className="h-12 w-full rounded-xl border border-linha bg-cartao px-4 outline-none focus:border-verde focus:ring-2 focus:ring-verde/20"
+            className="h-12 w-full rounded-xl border border-linha bg-cartao px-4 outline-none focus:border-primaria focus:ring-2 focus:ring-primaria/20"
           />
         </label>
 

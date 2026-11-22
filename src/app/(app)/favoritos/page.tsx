@@ -17,11 +17,11 @@ export default function Favoritos() {
       {favoritos.length === 0 ? (
         <div className="flex flex-col items-center px-8 py-20 text-center">
           <span className="text-6xl" aria-hidden="true">
-            💚
+            🧡
           </span>
           <h2 className="mt-4 text-lg font-semibold">Sem favoritos por enquanto</h2>
           <p className="mt-1 text-sm text-texto-suave">Toque no coração de uma receita para guardá-la aqui.</p>
-          <Link href="/buscar" className="mt-6 rounded-xl bg-verde px-6 py-3 text-sm font-semibold text-white">
+          <Link href="/buscar" className="mt-6 rounded-xl bg-primaria px-6 py-3 text-sm font-semibold text-white">
             Encontrar receitas
           </Link>
         </div>

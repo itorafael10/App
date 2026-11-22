@@ -2,76 +2,118 @@
 
 import Link from "next/link";
 import { useApp } from "@/components/AppProvider";
-import { IconeBrilho, IconeCarrinho, IconeFiltro } from "@/components/Icones";
+import { ChapeuChef } from "@/components/Logo";
 
-const RECURSOS = [
-  {
-    Icone: IconeBrilho,
-    titulo: "Receitas com IA",
-    texto: "Sugestões personalizadas a partir dos seus ingredientes",
-  },
-  {
-    Icone: IconeFiltro,
-    titulo: "Filtros alimentares",
-    texto: "Vegano, sem glúten, sem lactose, low carb e mais",
-  },
-  {
-    Icone: IconeCarrinho,
-    titulo: "Lista de compras inteligente",
-    texto: "Saiba exatamente o que falta comprar",
-  },
+function IconeCesta({ className = "size-9" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M3 10h18l-1.6 9.2a1.5 1.5 0 0 1-1.5 1.3H6.1a1.5 1.5 0 0 1-1.5-1.3L3 10Z" />
+      <path d="m7 10 4-6M17 10l-3-6" />
+      <path d="M9 14v3M12 14v3M15 14v3" />
+    </svg>
+  );
+}
+
+function IconeLivro({ className = "size-9" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2V4Z" />
+      <path d="M5 18a2 2 0 0 1 2-2h12" />
+      <path d="M9 8h6M9 11h4" />
+    </svg>
+  );
+}
+
+const DESTAQUES = [
+  { Icone: IconeCesta, texto: "Use o que tem em casa" },
+  { Icone: IconeLivro, texto: "Receitas variadas" },
+  { Icone: ChapeuChef, texto: "Cozinhe de forma mais prática" },
 ];
 
 export default function Boasvindas() {
   const { usuario } = useApp();
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col bg-cartao">
-      <section className="relative flex h-[46dvh] min-h-72 flex-col justify-end overflow-hidden bg-gradient-to-br from-[#1f3a24] via-[#2b4d2f] to-[#14261a] p-6 text-white">
-        <div className="pointer-events-none absolute inset-0 select-none" aria-hidden="true">
-          <span className="absolute right-6 top-10 rotate-12 text-7xl">🍅</span>
-          <span className="absolute left-8 top-16 -rotate-12 text-5xl">🧄</span>
-          <span className="absolute right-24 top-36 text-6xl">🥕</span>
-          <span className="absolute left-24 top-32 rotate-6 text-4xl">🌿</span>
-          <span className="absolute -right-4 top-56 text-8xl opacity-90">🍲</span>
-        </div>
+    <main className="relative isolate flex min-h-dvh flex-col overflow-hidden bg-marrom text-white">
+      {/* Fundo: luz quente de cozinha */}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(120% 70% at 50% 0%, #a8663a 0%, #7a4a2b 38%, #4a2c1a 75%), #4a2c1a",
+        }}
+      />
+      {/* Prateleira sugerida e temperos no alto */}
+      <div className="absolute inset-x-0 top-[150px] -z-10 h-2 bg-[#5c3820]/70 blur-[1px]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 select-none" aria-hidden="true">
+        <span className="absolute left-[6%] top-[78px] text-3xl opacity-80 sm:text-4xl">🫙</span>
+        <span className="absolute left-[2%] top-[104px] text-2xl opacity-70 sm:text-3xl">🧂</span>
+        <span className="absolute right-[7%] top-[70px] text-4xl opacity-90 sm:text-5xl">🌿</span>
+      </div>
+
+      <section className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center px-6 pt-12 text-center sm:pt-16">
         <div className="relative">
-          <h1 className="text-[28px] font-semibold leading-tight">
-            Transforme o que você tem em uma refeição deliciosa
-          </h1>
-          <p className="mt-2 text-sm text-white/80">Receitas com inteligência artificial feitas com os seus ingredientes</p>
+          <ChapeuChef className="size-24 text-white drop-shadow sm:size-28" />
+          <span className="absolute -right-12 top-10 flex flex-col gap-1.5" aria-hidden="true">
+            <span className="block h-1 w-5 -rotate-45 rounded-full bg-primaria" />
+            <span className="block h-1 w-6 -rotate-12 rounded-full bg-primaria" />
+            <span className="block h-1 w-5 rotate-12 rounded-full bg-primaria" />
+          </span>
         </div>
-      </section>
 
-      <section className="flex flex-1 flex-col gap-5 p-6">
-        {RECURSOS.map(({ Icone, titulo, texto }) => (
-          <div key={titulo} className="flex items-center gap-4">
-            <span className="grid size-11 shrink-0 place-items-center rounded-full bg-verde-claro text-verde">
-              <Icone className="size-5" />
-            </span>
-            <div>
-              <h2 className="text-[15px] font-semibold">{titulo}</h2>
-              <p className="text-[13px] text-texto-suave">{texto}</p>
-            </div>
-          </div>
-        ))}
+        <h1 className="mt-3 font-marca font-bold leading-[0.9] drop-shadow-sm">
+          <span className="block text-[56px] text-white sm:text-7xl">Cozinha</span>
+          <span className="block text-[52px] text-primaria sm:text-[68px]">Inteligente</span>
+        </h1>
 
-        <div className="mt-auto space-y-3 pt-4">
+        <p className="mt-6 max-w-sm text-lg leading-snug text-white/95 sm:text-xl">
+          Informe os ingredientes que você tem e descubra{" "}
+          <span className="relative whitespace-nowrap font-semibold text-primaria">
+            receitas incríveis!
+            <svg viewBox="0 0 200 12" className="absolute -bottom-3 left-0 w-full" aria-hidden="true">
+              <path d="M4 8c50-6 130-7 192-2" stroke="#e8862a" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+            </svg>
+          </span>
+        </p>
+
+        <div className="mt-10 w-full max-w-xs space-y-3">
           <Link
             href={usuario ? "/buscar" : "/entrar?modo=cadastro"}
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-verde font-semibold text-white shadow-sm transition hover:bg-verde-escuro"
+            className="flex h-14 w-full items-center justify-center rounded-2xl bg-primaria text-lg font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-primaria-escura"
           >
-            <IconeBrilho className="size-5" /> Começar
+            {usuario ? "Buscar receitas" : "Começar agora"}
           </Link>
           {!usuario && (
-            <p className="text-center text-sm text-texto-suave">
+            <p className="text-sm text-white/85">
               Já tem conta?{" "}
-              <Link href="/entrar" className="font-semibold text-verde">
+              <Link href="/entrar" className="font-semibold text-primaria underline-offset-2 hover:underline">
                 Entrar
               </Link>
             </p>
           )}
         </div>
       </section>
+
+      {/* Bancada de madeira com ingredientes apoiados na borda */}
+      <footer className="relative mt-16 bg-gradient-to-b from-[#8a5530] to-[#5a341d] px-4 pb-8 pt-8">
+        <div className="pointer-events-none absolute inset-x-0 top-0 select-none" aria-hidden="true">
+          <span className="absolute -top-12 -left-2 text-6xl sm:left-[4%] sm:text-7xl">🍅</span>
+          <span className="absolute -top-9 left-12 text-5xl sm:left-[12%] sm:text-6xl">🍅</span>
+          <span className="absolute -top-8 left-[26%] -rotate-12 text-4xl sm:left-[20%] sm:text-5xl">🌿</span>
+          <span className="absolute -top-8 right-[24%] text-4xl sm:right-[16%] sm:text-5xl">🧄</span>
+          <span className="absolute -top-11 -right-2 text-6xl sm:right-[4%] sm:text-7xl">🧀</span>
+        </div>
+        <ul className="mx-auto grid max-w-xl grid-cols-3 divide-x divide-primaria/70">
+          {DESTAQUES.map(({ Icone, texto }) => (
+            <li key={texto} className="flex flex-col items-center gap-2 px-2 text-center">
+              <Icone className="size-9 text-white" />
+              <span className="text-[13px] leading-tight text-white/95 sm:text-sm">{texto}</span>
+            </li>
+          ))}
+        </ul>
+        <svg viewBox="0 0 300 14" className="mx-auto mt-5 w-2/3 max-w-md" aria-hidden="true">
+          <path d="M4 10c80-8 200-9 292-3" stroke="#e8862a" strokeWidth="3" fill="none" strokeLinecap="round" />
+        </svg>
+      </footer>
     </main>
   );
 }

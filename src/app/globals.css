@@ -1,21 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-verde: #388e3c;
-  --color-verde-escuro: #2b6e2f;
-  --color-verde-claro: #e7f4e8;
-  --color-verde-claro2: #d3ebd5;
-  --color-laranja: #f59e0b;
-  --color-laranja-claro: #fef3e2;
-  --color-laranja-escuro: #a6520b;
-  --color-erro: #d93636;
-  --color-erro-claro: #fdeceb;
-  --color-fundo: #f4f7f4;
+  /* Paleta quente, inspirada em cozinha: laranja, marrom, creme e verde-folha */
+  --color-primaria: #e8862a;
+  --color-primaria-escura: #c46a14;
+  --color-primaria-clara: #fdeedc;
+  --color-primaria-clara2: #fadfbf;
+  --color-marrom: #4a2c1a;
+  --color-marrom-medio: #7a4a2b;
+  --color-folha: #4f8a3c;
+  --color-folha-clara: #e8f2e1;
+  --color-laranja: #d99a1e;
+  --color-laranja-claro: #fdf3d8;
+  --color-laranja-escuro: #8a5a00;
+  --color-erro: #c93a2b;
+  --color-erro-claro: #fbe9e6;
+  --color-fundo: #faf5ee;
   --color-cartao: #ffffff;
-  --color-linha: #e6ebe7;
-  --color-texto: #1b241e;
-  --color-texto-suave: #687570;
+  --color-linha: #efe4d6;
+  --color-texto: #2e1f15;
+  --color-texto-suave: #7d6858;
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-marca: var(--font-fredoka), var(--font-poppins), ui-sans-serif, sans-serif;
 }
 
 html {

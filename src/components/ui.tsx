@@ -47,7 +47,7 @@ export function Chip({
     "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors";
   if (onRemover) {
     return (
-      <span className={`${base} bg-verde text-white`}>
+      <span className={`${base} bg-primaria text-white`}>
         {children}
         <button onClick={onRemover} aria-label={`Remover ${children}`} className="-mr-1 rounded-full p-0.5 hover:bg-white/20">
           <IconeX className="size-3.5" />
@@ -60,7 +60,7 @@ export function Chip({
       onClick={onClick}
       aria-pressed={ativo}
       className={`${base} ${
-        ativo ? "bg-verde text-white" : "bg-verde-claro text-verde-escuro hover:bg-verde-claro2"
+        ativo ? "bg-primaria text-white" : "bg-primaria-clara text-primaria-escura hover:bg-primaria-clara2"
       }`}
     >
       {children}
@@ -78,7 +78,7 @@ export function BotaoPrincipal({
     <button
       {...props}
       disabled={props.disabled || carregando}
-      className={`flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-verde font-semibold text-white shadow-sm transition hover:bg-verde-escuro disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primaria font-semibold text-white shadow-sm transition hover:bg-primaria-escura disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
     >
       {carregando ? <span className="size-5 animate-spin rounded-full border-2 border-white/40 border-t-white" /> : null}
       {children}
@@ -88,7 +88,7 @@ export function BotaoPrincipal({
 
 const COR_AVISO = {
   info: "bg-laranja-claro text-laranja-escuro",
-  sucesso: "bg-verde-claro text-verde-escuro",
+  sucesso: "bg-folha-clara text-folha",
   erro: "bg-erro-claro text-erro",
 };
 

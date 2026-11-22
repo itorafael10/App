@@ -38,7 +38,7 @@ export default function Receitas() {
               onClick={() => setMostrarFiltros((m) => !m)}
               aria-label="Filtros"
               aria-expanded={mostrarFiltros}
-              className={`grid size-9 place-items-center rounded-full ${filtros.length ? "bg-verde-claro text-verde" : "text-texto hover:bg-fundo"}`}
+              className={`grid size-9 place-items-center rounded-full ${filtros.length ? "bg-primaria-clara text-primaria" : "text-texto hover:bg-fundo"}`}
             >
               <IconeFiltro className="size-[18px]" />
             </button>
@@ -53,7 +53,7 @@ export default function Receitas() {
           </span>
           <h2 className="mt-4 text-lg font-semibold">Nenhuma receita ainda</h2>
           <p className="mt-1 text-sm text-texto-suave">Conte o que você tem em casa e o chef cria receitas para você.</p>
-          <Link href="/buscar" className="mt-6 rounded-xl bg-verde px-6 py-3 text-sm font-semibold text-white">
+          <Link href="/buscar" className="mt-6 rounded-xl bg-primaria px-6 py-3 text-sm font-semibold text-white">
             Buscar receitas
           </Link>
         </div>
@@ -61,11 +61,11 @@ export default function Receitas() {
         <div className="space-y-4 p-5">
           <div className="flex flex-wrap items-center gap-2">
             {ingredientes.map((i) => (
-              <span key={i} className="rounded-full bg-verde-claro px-3 py-1 text-[12px] font-medium text-verde-escuro">
+              <span key={i} className="rounded-full bg-primaria-clara px-3 py-1 text-[12px] font-medium text-primaria-escura">
                 {i}
               </span>
             ))}
-            <Link href="/buscar" className="px-1 text-[12px] font-semibold text-verde">
+            <Link href="/buscar" className="px-1 text-[12px] font-semibold text-primaria">
               Editar
             </Link>
           </div>

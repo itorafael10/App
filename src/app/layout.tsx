@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Fredoka, Poppins } from "next/font/google";
 import { AppProvider } from "@/components/AppProvider";
 import "./globals.css";
 
@@ -7,6 +7,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
+  subsets: ["latin"],
+  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -17,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#388e3c",
+  themeColor: "#e8862a",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -25,7 +31,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${poppins.variable} h-full antialiased`}>
+    <html lang="pt-BR" className={`${poppins.variable} ${fredoka.variable} h-full antialiased`}>
       <body className="min-h-full font-sans">
         <AppProvider>{children}</AppProvider>
       </body>

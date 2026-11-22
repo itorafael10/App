@@ -21,7 +21,7 @@ const VISUAL: Record<Categoria, { emoji: string; fundo: string }> = {
 };
 
 const COR_DIFICULDADE = {
-  Fácil: "bg-verde text-white",
+  Fácil: "bg-folha text-white",
   Média: "bg-laranja text-white",
   Difícil: "bg-erro text-white",
 };
@@ -63,7 +63,7 @@ export function CartaoReceita({ receita, onAbrir }: { receita: Receita; onAbrir:
           {receita.dificuldade}
         </span>
         {receita.custo === "Baixo" && (
-          <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-verde-escuro">
+          <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-primaria-escura">
             💰 Econômica
           </span>
         )}
@@ -148,7 +148,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
                 <li key={n} className="flex items-start gap-3 text-sm">
                   <span
                     className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full ${
-                      i.tenho ? "bg-verde-claro text-verde" : "bg-laranja-claro text-laranja-escuro"
+                      i.tenho ? "bg-folha-clara text-folha" : "bg-laranja-claro text-laranja-escuro"
                     }`}
                   >
                     {i.tenho ? <IconeCheck className="size-3.5" /> : <IconeCarrinho className="size-3" />}
@@ -180,7 +180,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
                     >
                       <span
                         className={`grid size-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold ${
-                          feito ? "bg-verde text-white" : "bg-verde-claro text-verde-escuro"
+                          feito ? "bg-folha text-white" : "bg-primaria-clara text-primaria-escura"
                         }`}
                       >
                         {feito ? <IconeCheck className="size-3.5" /> : n + 1}
@@ -194,7 +194,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
           </section>
 
           {receita.dica && (
-            <p className="rounded-xl bg-verde-claro px-4 py-3 text-sm text-verde-escuro">
+            <p className="rounded-xl bg-primaria-clara px-4 py-3 text-sm text-primaria-escura">
               <strong>Dica:</strong> {receita.dica}
             </p>
           )}

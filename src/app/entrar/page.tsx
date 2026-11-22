@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useApp } from "@/components/AppProvider";
+import { LogoHorizontal } from "@/components/Logo";
 import { Aviso, BotaoPrincipal } from "@/components/ui";
 
 export default function Entrar() {
@@ -46,15 +47,12 @@ export default function Entrar() {
   }
 
   const campo =
-    "h-12 w-full rounded-xl border border-linha bg-cartao px-4 text-[15px] outline-none transition placeholder:text-texto-suave/70 focus:border-verde focus:ring-2 focus:ring-verde/20";
+    "h-12 w-full rounded-xl border border-linha bg-cartao px-4 text-[15px] outline-none transition placeholder:text-texto-suave/70 focus:border-primaria focus:ring-2 focus:ring-primaria/20";
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col bg-cartao px-6 py-10">
-      <Link href="/" className="mb-8 flex items-center gap-2 text-verde">
-        <span className="text-2xl" aria-hidden="true">
-          🍲
-        </span>
-        <span className="font-semibold">Cozinha Inteligente</span>
+    <main className="mx-auto flex min-h-dvh max-w-md flex-col bg-fundo px-6 py-10">
+      <Link href="/" className="mb-10 self-start" aria-label="Cozinha Inteligente, página inicial">
+        <LogoHorizontal />
       </Link>
 
       <h1 className="text-2xl font-semibold">{modo === "cadastro" ? "Crie sua conta" : "Bem-vindo de volta"}</h1>
@@ -70,7 +68,7 @@ export default function Entrar() {
             Enviamos um link de confirmação para <strong>{email}</strong>. Abra seu e-mail, confirme a conta e
             depois volte aqui para entrar.
           </Aviso>
-          <button onClick={() => { setConfirmar(false); setModo("entrar"); }} className="mt-4 text-sm font-semibold text-verde">
+          <button onClick={() => { setConfirmar(false); setModo("entrar"); }} className="mt-4 text-sm font-semibold text-primaria">
             Já confirmei, quero entrar
           </button>
         </div>
@@ -111,7 +109,7 @@ export default function Entrar() {
             <button
               type="button"
               onClick={() => { setErro(""); setModo(modo === "cadastro" ? "entrar" : "cadastro"); }}
-              className="font-semibold text-verde"
+              className="font-semibold text-primaria"
             >
               {modo === "cadastro" ? "Entrar" : "Criar conta"}
             </button>

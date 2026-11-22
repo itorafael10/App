@@ -30,12 +30,12 @@ export default function Inicio() {
     <div className="space-y-7 p-5 pt-8">
       <header>
         <p className="text-sm text-texto-suave">{saudacao()}{primeiroNome ? `, ${primeiroNome}` : ""} 👋</p>
-        <h1 className="mt-1 text-2xl font-semibold leading-tight">O que vamos cozinhar hoje?</h1>
+        <h1 className="mt-1 font-marca text-[28px] font-bold leading-tight text-marrom">O que vamos cozinhar hoje?</h1>
       </header>
 
       <Link
         href="/buscar"
-        className="relative block overflow-hidden rounded-3xl bg-gradient-to-br from-verde to-verde-escuro p-5 text-white shadow-sm"
+        className="relative block overflow-hidden rounded-3xl bg-gradient-to-br from-primaria via-[#c96a24] to-marrom-medio p-5 text-white shadow-sm"
       >
         <span className="absolute -right-3 -top-3 text-7xl opacity-90" aria-hidden="true">
           🥘
@@ -43,7 +43,7 @@ export default function Inicio() {
         <IconeBrilho className="size-6" />
         <p className="mt-3 text-lg font-semibold">Receitas com o que você tem</p>
         <p className="mt-1 max-w-[16rem] text-sm text-white/85">Diga seus ingredientes e a IA cria pratos para você.</p>
-        <span className="mt-4 inline-block rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-verde-escuro">
+        <span className="mt-4 inline-block rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-marrom">
           Começar agora
         </span>
       </Link>
@@ -60,7 +60,7 @@ export default function Inicio() {
         <div className="grid grid-cols-3 gap-3">
           {EM_BREVE.map(({ Icone, titulo, texto }) => (
             <div key={titulo} className="rounded-2xl border border-linha bg-cartao p-3">
-              <span className="grid size-9 place-items-center rounded-full bg-verde-claro text-verde">
+              <span className="grid size-9 place-items-center rounded-full bg-primaria-clara text-primaria">
                 <Icone className="size-[18px]" />
               </span>
               <p className="mt-2 text-[13px] font-semibold leading-tight">{titulo}</p>

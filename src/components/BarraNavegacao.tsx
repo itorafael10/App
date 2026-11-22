@@ -25,7 +25,7 @@ export function BarraNavegacao() {
                 href={href}
                 aria-current={ativo ? "page" : undefined}
                 className={`flex flex-col items-center gap-0.5 py-2.5 text-[11px] font-medium ${
-                  ativo ? "text-verde" : "text-texto-suave hover:text-texto"
+                  ativo ? "text-primaria" : "text-texto-suave hover:text-texto"
                 }`}
               >
                 <Icone className="size-[22px]" />
