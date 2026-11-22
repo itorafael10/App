@@ -17,6 +17,15 @@ export default function Entrar() {
   );
   const [modoEscolhido, setModo] = useState<"entrar" | "cadastro" | null>(null);
   const modo = modoEscolhido ?? modoDaUrl;
+  // Para onde ir depois do login (ex.: /festas). Só aceita caminhos internos do app.
+  const destino = useSyncExternalStore(
+    () => () => {},
+    () => {
+      const v = new URLSearchParams(window.location.search).get("voltar") ?? "";
+      return v.startsWith("/") && !v.startsWith("//") ? v : "/inicio";
+    },
+    () => "/inicio",
+  );
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -25,8 +34,8 @@ export default function Entrar() {
   const [confirmar, setConfirmar] = useState(false);
 
   useEffect(() => {
-    if (!carregando && usuario) router.replace("/buscar");
-  }, [carregando, usuario, router]);
+    if (!carregando && usuario) router.replace(destino);
+  }, [carregando, usuario, router, destino]);
 
   async function enviar(e: React.FormEvent) {
     e.preventDefault();

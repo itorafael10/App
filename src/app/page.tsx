@@ -77,10 +77,10 @@ export default function Boasvindas() {
 
         <div className="mt-10 w-full max-w-xs space-y-3">
           <Link
-            href={usuario ? "/buscar" : "/entrar?modo=cadastro"}
+            href={usuario ? "/inicio" : "/entrar?modo=cadastro"}
             className="flex h-14 w-full items-center justify-center rounded-2xl bg-primaria text-lg font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-primaria-escura"
           >
-            {usuario ? "Buscar receitas" : "Começar agora"}
+            {usuario ? "Abrir o app" : "Começar agora"}
           </Link>
           {!usuario && (
             <p className="text-sm text-white/85">
@@ -91,6 +91,22 @@ export default function Boasvindas() {
             </p>
           )}
         </div>
+
+        <Link
+          href={usuario ? "/festas" : "/entrar?modo=cadastro&voltar=/festas"}
+          className="mt-8 flex w-full max-w-xs items-center gap-3 rounded-2xl border border-white/15 bg-[#9e2a2b]/85 px-4 py-3 text-left shadow-lg shadow-black/20 backdrop-blur transition hover:bg-[#9e2a2b]"
+        >
+          <span className="text-3xl" aria-hidden="true">
+            🎄
+          </span>
+          <span className="flex-1">
+            <span className="block text-[11px] font-semibold uppercase tracking-wider text-primaria-clara2">Novidade</span>
+            <span className="block text-sm font-semibold leading-snug">Receitas de Natal e Ano Novo</span>
+          </span>
+          <span className="text-xl text-primaria" aria-hidden="true">
+            ›
+          </span>
+        </Link>
       </section>
 
       {/* Bancada de madeira com ingredientes apoiados na borda */}

@@ -6,12 +6,16 @@ import { useApp } from "./AppProvider";
 import { BarraNavegacao } from "./BarraNavegacao";
 
 export function AreaLogada({ children }: { children: React.ReactNode }) {
-  const { carregando, usuario } = useApp();
+  const { carregando, usuario, saiu } = useApp();
   const router = useRouter();
 
   useEffect(() => {
-    if (!carregando && !usuario) router.replace("/entrar");
-  }, [carregando, usuario, router]);
+    if (carregando || usuario) return;
+    // Quem acabou de sair volta para a página inicial; quem abriu uma tela sem login
+    // vai para o login e depois retorna para a mesma tela.
+    if (saiu) router.replace("/");
+    else router.replace(`/entrar?voltar=${encodeURIComponent(window.location.pathname)}`);
+  }, [carregando, usuario, saiu, router]);
 
   if (carregando || !usuario) {
     return (

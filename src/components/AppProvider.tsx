@@ -8,6 +8,8 @@ type Estado = {
   modo: "demo" | "supabase";
   carregando: boolean;
   usuario: Usuario | null;
+  /** true logo depois de a pessoa tocar em "Sair" (para não pedir login de novo na mesma tela) */
+  saiu: boolean;
   perfil: Perfil | null;
   favoritos: Receita[];
   ingredientes: string[];
@@ -43,6 +45,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const api = backend();
   const [carregando, setCarregando] = useState(true);
   const [usuario, setUsuario] = useState<Usuario | null>(null);
+  const [saiu, setSaiu] = useState(false);
   const [perfil, setPerfil] = useState<Perfil | null>(null);
   const [favoritos, setFavoritos] = useState<Receita[]>([]);
   // Restaura a busca atual quando a página é recarregada. As telas que usam esses dados
@@ -62,6 +65,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       idAtual = u?.id ?? null;
       setCarregando(true);
       setUsuario(u);
+      if (u) setSaiu(false);
       if (!u) {
         setPerfil(null);
         setFavoritos([]);
@@ -97,6 +101,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const sair = useCallback(async () => {
+    setSaiu(true);
     // Limpa a busca para a próxima pessoa que usar este aparelho
     setIngredientesState([]);
     setResultados([]);
@@ -160,6 +165,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       modo: api.modo,
       carregando,
       usuario,
+      saiu,
       perfil,
       favoritos,
       ingredientes,
@@ -173,7 +179,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       alternarFavorito,
       gerarReceitas,
     }),
-    [api, carregando, usuario, perfil, favoritos, ingredientes, resultados, setIngredientes, sair, salvarPerfil, ehFavorito, alternarFavorito, gerarReceitas],
+    [api, carregando, usuario, saiu, perfil, favoritos, ingredientes, resultados, setIngredientes, sair, salvarPerfil, ehFavorito, alternarFavorito, gerarReceitas],
   );
 
   return <Contexto.Provider value={valor}>{children}</Contexto.Provider>;
