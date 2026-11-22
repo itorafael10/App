@@ -16,9 +16,9 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "Cozinha Inteligente",
+  title: "Chef de Casa",
   description: "Diga o que tem na geladeira e receba receitas personalizadas com inteligência artificial.",
-  appleWebApp: { capable: true, title: "Cozinha", statusBarStyle: "default" },
+  appleWebApp: { capable: true, title: "Chef de Casa", statusBarStyle: "default" },
   icons: { icon: "/icone.svg", apple: "/icone.svg" },
 };
 

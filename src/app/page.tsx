@@ -61,8 +61,8 @@ export default function Boasvindas() {
         </div>
 
         <h1 className="mt-3 font-marca font-bold leading-[0.9] drop-shadow-sm">
-          <span className="block text-[56px] text-white sm:text-7xl">Cozinha</span>
-          <span className="block text-[52px] text-primaria sm:text-[68px]">Inteligente</span>
+          <span className="block text-[64px] text-white sm:text-[84px]">Chef</span>
+          <span className="block text-[56px] text-primaria sm:text-[72px]">de Casa</span>
         </h1>
 
         <p className="mt-6 max-w-sm text-lg leading-snug text-white/95 sm:text-xl">

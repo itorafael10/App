@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Cozinha Inteligente",
-    short_name: "Cozinha",
+    name: "Chef de Casa",
+    short_name: "Chef de Casa",
     description: "Receitas personalizadas com os ingredientes que você tem em casa.",
     start_url: "/inicio",
     display: "standalone",

@@ -24,8 +24,8 @@ export function LogoHorizontal({ claro = false }: { claro?: boolean }) {
     <span className="flex items-center gap-2">
       <ChapeuChef className={`size-9 ${claro ? "text-white" : "text-marrom"}`} />
       <span className="font-marca text-xl font-bold leading-none">
-        <span className={claro ? "text-white" : "text-marrom"}>Cozinha </span>
-        <span className="text-primaria">Inteligente</span>
+        <span className={claro ? "text-white" : "text-marrom"}>Chef </span>
+        <span className="text-primaria">de Casa</span>
       </span>
     </span>
   );

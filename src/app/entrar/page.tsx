@@ -60,7 +60,7 @@ export default function Entrar() {
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col bg-fundo px-6 py-10">
-      <Link href="/" className="mb-10 self-start" aria-label="Cozinha Inteligente, página inicial">
+      <Link href="/" className="mb-10 self-start" aria-label="Chef de Casa, página inicial">
         <LogoHorizontal />
       </Link>
 

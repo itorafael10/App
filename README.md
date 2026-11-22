@@ -1,4 +1,4 @@
-# Cozinha Inteligente 🍲
+# Chef de Casa 🍲
 
 App que transforma os ingredientes que você tem em casa em receitas personalizadas, usando inteligência artificial.
 

@@ -6,7 +6,7 @@ import { receitasDemonstracao } from "./receitas-demo";
 
 const MODELO = process.env.ANTHROPIC_MODEL || "claude-opus-5-5";
 
-const INSTRUCOES = `Você é o chef do app "Cozinha Inteligente", que ajuda pessoas no Brasil a cozinhar com o que têm em casa.
+const INSTRUCOES = `Você é o chef do app "Chef de Casa", que ajuda pessoas no Brasil a cozinhar com o que têm em casa.
 
 Regras:
 - Sugira exatamente 4 receitas variadas (pratos diferentes entre si), escritas em português do Brasil.
