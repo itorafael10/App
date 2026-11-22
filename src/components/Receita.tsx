@@ -3,22 +3,8 @@
 import { useEffect, useState } from "react";
 import { useApp } from "./AppProvider";
 import { IconeCarrinho, IconeCheck, IconeCoracao, IconePessoas, IconeRelogio, IconeX } from "./Icones";
-import type { Categoria, Receita } from "@/lib/tipos";
-
-const VISUAL: Record<Categoria, { emoji: string; fundo: string }> = {
-  salada: { emoji: "🥗", fundo: "from-lime-200 to-emerald-300" },
-  massa: { emoji: "🍝", fundo: "from-amber-200 to-orange-300" },
-  carne: { emoji: "🥩", fundo: "from-rose-200 to-red-300" },
-  frango: { emoji: "🍗", fundo: "from-amber-200 to-yellow-300" },
-  peixe: { emoji: "🐟", fundo: "from-sky-200 to-cyan-300" },
-  sopa: { emoji: "🍲", fundo: "from-orange-200 to-amber-300" },
-  vegetariano: { emoji: "🥦", fundo: "from-green-200 to-lime-300" },
-  arroz: { emoji: "🍚", fundo: "from-stone-200 to-amber-200" },
-  ovos: { emoji: "🍳", fundo: "from-yellow-100 to-amber-200" },
-  lanche: { emoji: "🥪", fundo: "from-orange-100 to-rose-200" },
-  sobremesa: { emoji: "🍰", fundo: "from-pink-200 to-rose-300" },
-  outro: { emoji: "🍽️", fundo: "from-emerald-100 to-teal-200" },
-};
+import { CapaReceita } from "./CapaReceita";
+import type { Receita } from "@/lib/tipos";
 
 export function formatarTempo(minutos: number) {
   if (minutos < 60) return `${minutos} min`;
@@ -57,34 +43,28 @@ function BotaoFavorito({ receita, className = "" }: { receita: Receita; classNam
 }
 
 export function CartaoReceita({ receita, onAbrir }: { receita: Receita; onAbrir: () => void }) {
-  const v = VISUAL[receita.categoria] ?? VISUAL.outro;
   return (
     <article
       onClick={onAbrir}
       className="cursor-pointer overflow-hidden rounded-2xl border border-linha bg-cartao shadow-sm transition hover:shadow-md"
     >
-      <div className={`relative grid h-36 place-items-center bg-gradient-to-br ${v.fundo}`}>
-        <span className="text-6xl drop-shadow-sm" aria-hidden="true">
-          {receita.emoji ?? v.emoji}
-        </span>
-        <span
-          className={`absolute left-3 top-3 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${COR_DIFICULDADE[receita.dificuldade]}`}
-        >
-          {receita.dificuldade}
-        </span>
-        {receita.classica ? (
-          <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-[#9e2a2b]">
-            🎄 Receita clássica
+      <CapaReceita categoria={receita.categoria}>
+        <div className="absolute left-3 top-3 flex gap-1.5">
+          <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${COR_DIFICULDADE[receita.dificuldade]}`}>
+            {receita.dificuldade}
           </span>
-        ) : (
-          receita.custo === "Baixo" && (
-            <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-primaria-escura">
-              💰 Econômica
-            </span>
-          )
-        )}
+          {receita.classica ? (
+            <span className="rounded-full bg-[#9e2a2b] px-2.5 py-0.5 text-[11px] font-semibold text-white">Clássica</span>
+          ) : (
+            receita.custo === "Baixo" && (
+              <span className="rounded-full bg-white px-2.5 py-0.5 text-[11px] font-semibold text-primaria-escura shadow-sm">
+                Econômica
+              </span>
+            )
+          )}
+        </div>
         <BotaoFavorito receita={receita} className="absolute right-3 top-3" />
-      </div>
+      </CapaReceita>
       <div className="p-4">
         <h3 className="font-semibold leading-snug">{receita.titulo}</h3>
         <p className="mt-1 line-clamp-2 text-[13px] text-texto-suave">{receita.descricao}</p>
@@ -120,7 +100,6 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
     };
   }, [onFechar]);
 
-  const v = VISUAL[receita.categoria] ?? VISUAL.outro;
   // Nas receitas clássicas não sabemos o que a pessoa tem em casa
   const faltam = receita.classica ? [] : receita.ingredientes.filter((i) => !i.tenho);
 
@@ -133,10 +112,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
         onClick={(e) => e.stopPropagation()}
         className="max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-cartao sm:rounded-3xl"
       >
-        <div className={`relative grid h-44 place-items-center bg-gradient-to-br ${v.fundo}`}>
-          <span className="text-7xl" aria-hidden="true">
-            {receita.emoji ?? v.emoji}
-          </span>
+        <CapaReceita categoria={receita.categoria} grande>
           <button
             onClick={onFechar}
             aria-label="Fechar"
@@ -145,7 +121,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
             <IconeX className="size-[18px]" />
           </button>
           <BotaoFavorito receita={receita} className="absolute right-4 top-4" />
-        </div>
+        </CapaReceita>
 
         <div className="space-y-6 p-5 pb-10">
           <div>
@@ -222,7 +198,7 @@ function PainelReceita({ receita, onFechar }: { receita: Receita; onFechar: () =
 
           <p className="border-t border-linha pt-4 text-center text-[12px] leading-relaxed text-texto-suave">
             {receita.classica
-              ? "🎄 Receita clássica das festas. Fornos variam: confira o ponto antes de servir."
+              ? "Receita clássica das festas. Fornos variam: confira o ponto antes de servir."
               : receitaDeExemplo(receita)
               ? "Receita de exemplo do modo demonstração, apenas para testar o app."
               : "✨ Receita sugerida por inteligência artificial. Confira tempos, temperaturas e quantidades antes de preparar."}

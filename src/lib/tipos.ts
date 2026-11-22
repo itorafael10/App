@@ -45,8 +45,6 @@ export type Receita = ReceitaGerada & {
   id: string;
   /** Receita da coleção fixa (ex.: Natal e Ano Novo), não gerada por IA */
   classica?: boolean;
-  /** Emoji específico do prato, no lugar do emoji da categoria */
-  emoji?: string;
 };
 export type Categoria = (typeof CATEGORIAS)[number];
 
